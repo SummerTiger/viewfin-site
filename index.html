@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewFin — AI Solutions & Technology Consulting</title>
+    <meta name="description" content="ViewFin is an AI solutions firm with a decade of building mission-critical technology. Custom AI agents, algorithmic trading systems, and enterprise AI consulting.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0A0C;
+            --bg-surface: #111114;
+            --bg-elevated: #18181C;
+            --border: #242429;
+            --text-primary: #F0EDE6;
+            --text-secondary: #9A9A9E;
+            --text-muted: #5A5A5E;
+            --accent: #D4A853;
+            --accent-dim: rgba(212, 168, 83, 0.12);
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ==================== NAV ==================== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 20px 48px;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: var(--sans);
+            font-size: 18px; font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-primary);
+        }
+
+        .nav-logo span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+
+        .nav-links a {
+            font-size: 13px; color: var(--text-secondary);
+            text-decoration: none; letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+
+        .nav-cta {
+            font-size: 13px !important; padding: 8px 20px;
+            background: var(--accent) !important; color: var(--bg) !important;
+            border-radius: 6px; font-weight: 500;
+            transition: all 0.3s !important;
+        }
+
+        .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            justify-content: center;
+            padding: 140px 48px 80px;
+            max-width: 1200px; margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 16px; border-radius: 100px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(212, 168, 83, 0.2);
+            font-size: 12px; color: var(--accent);
+            letter-spacing: 1.5px; text-transform: uppercase;
+            font-weight: 500; margin-bottom: 32px;
+            width: fit-content;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(48px, 7vw, 88px);
+            font-weight: 400; line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 28px;
+            animation: fadeUp 0.8s ease 0.15s both;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: 18px; line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+            animation: fadeUp 0.8s ease 0.3s both;
+        }
+
+        .hero-actions {
+            display: flex; gap: 16px; flex-wrap: wrap;
+            animation: fadeUp 0.8s ease 0.45s both;
+        }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; background: var(--accent);
+            color: var(--bg); font-size: 14px; font-weight: 600;
+            border: none; border-radius: 8px; cursor: pointer;
+            text-decoration: none; transition: all 0.3s;
+        }
+
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; background: transparent;
+            color: var(--text-primary); font-size: 14px; font-weight: 500;
+            border: 1px solid var(--border); border-radius: 8px;
+            cursor: pointer; text-decoration: none; transition: all 0.3s;
+        }
+
+        .btn-secondary:hover { border-color: var(--text-muted); }
+
+        .hero-stats {
+            display: flex; gap: 48px; margin-top: 80px;
+            padding-top: 40px; border-top: 1px solid var(--border);
+            animation: fadeUp 0.8s ease 0.6s both;
+        }
+
+        .stat-item .stat-number {
+            font-family: var(--serif); font-size: 36px;
+            color: var(--text-primary); line-height: 1;
+        }
+
+        .stat-item .stat-label {
+            font-size: 12px; color: var(--text-muted);
+            letter-spacing: 1px; text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        /* ==================== SERVICES ==================== */
+        .section {
+            padding: 120px 48px;
+            max-width: 1200px; margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 11px; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--accent);
+            margin-bottom: 16px; font-weight: 500;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 400; margin-bottom: 16px;
+            line-height: 1.15;
+        }
+
+        .section-desc {
+            font-size: 16px; color: var(--text-secondary);
+            max-width: 560px; margin-bottom: 60px; line-height: 1.7;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 36px 32px;
+            transition: all 0.4s ease;
+            position: relative; overflow: hidden;
+        }
+
+        .service-card:hover {
+            border-color: rgba(212, 168, 83, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0; transition: opacity 0.4s;
+        }
+
+        .service-card:hover::before { opacity: 1; }
+
+        .service-icon {
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--accent-dim);
+            border-radius: 10px; margin-bottom: 24px;
+            font-size: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 18px; font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            font-size: 14px; color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ==================== EDGE ==================== */
+        .edge-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .edge-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 14px; padding: 40px 32px;
+        }
+
+        .edge-card h3 {
+            font-family: var(--serif);
+            font-size: 22px; font-weight: 400;
+            margin-bottom: 16px; line-height: 1.3;
+        }
+
+        .edge-card h3 em { font-style: italic; color: var(--accent); }
+
+        .edge-card p {
+            font-size: 14px; color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ==================== FOUNDER ==================== */
+        .founder-section {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: center;
+        }
+
+        .founder-text .founder-name {
+            font-family: var(--serif);
+            font-size: 32px; font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .founder-text .founder-role {
+            font-size: 13px; color: var(--accent);
+            letter-spacing: 1px; text-transform: uppercase;
+            margin-bottom: 24px; font-weight: 500;
+        }
+
+        .founder-text p {
+            font-size: 15px; color: var(--text-secondary);
+            line-height: 1.8; margin-bottom: 16px;
+        }
+
+        .founder-visual {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 14px; padding: 48px;
+            display: flex; flex-direction: column;
+            gap: 20px;
+        }
+
+        .founder-credential {
+            display: flex; align-items: flex-start; gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .founder-credential:last-child { border-bottom: none; }
+
+        .founder-credential .cred-year {
+            font-family: var(--serif);
+            font-size: 24px; color: var(--accent);
+            flex-shrink: 0; width: 60px;
+        }
+
+        .founder-credential .cred-text {
+            font-size: 14px; color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .founder-credential .cred-text strong {
+            color: var(--text-primary); font-weight: 500;
+        }
+
+        /* ==================== CONTACT ==================== */
+        .contact-section {
+            text-align: center;
+            padding: 120px 48px;
+            max-width: 700px; margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            font-family: var(--serif);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 400; margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .contact-section h2 em { font-style: italic; color: var(--accent); }
+
+        .contact-section p {
+            font-size: 16px; color: var(--text-secondary);
+            margin-bottom: 40px; line-height: 1.7;
+        }
+
+        .contact-details {
+            display: flex; justify-content: center; gap: 48px;
+            margin-top: 48px;
+        }
+
+        .contact-item {
+            font-size: 13px; color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .contact-item a {
+            color: var(--text-secondary);
+            text-decoration: none; transition: color 0.3s;
+        }
+
+        .contact-item a:hover { color: var(--accent); }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            padding: 40px 48px;
+            border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between;
+            align-items: center;
+            max-width: 1200px; margin: 0 auto;
+        }
+
+        footer .footer-copy {
+            font-size: 12px; color: var(--text-muted);
+        }
+
+        footer .footer-links {
+            display: flex; gap: 24px;
+        }
+
+        footer .footer-links a {
+            font-size: 12px; color: var(--text-muted);
+            text-decoration: none; transition: color 0.3s;
+        }
+
+        footer .footer-links a:hover { color: var(--text-secondary); }
+
+        /* ==================== ANIMATIONS ==================== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0; transform: translateY(24px);
+            transition: all 0.7s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1; transform: translateY(0);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            nav { padding: 16px 24px; }
+            .nav-links { display: none; }
+            .hero { padding: 120px 24px 60px; }
+            .hero-stats { flex-wrap: wrap; gap: 32px; }
+            .section { padding: 80px 24px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .edge-grid { grid-template-columns: 1fr; }
+            .founder-section { grid-template-columns: 1fr; gap: 40px; }
+            [style*="grid-template-columns: 1fr 2fr"] { grid-template-columns: 1fr !important; }
+            .contact-section { padding: 80px 24px; }
+            .contact-details { flex-direction: column; gap: 16px; }
+            footer { flex-direction: column; gap: 16px; padding: 32px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-logo">View<span>Fin</span></div>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#edge">Our Edge</a>
+            <a href="#founder">Founder</a>
+            <a href="#contact" class="nav-cta">Get in Touch</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">✦ AI Solutions & Technology Consulting</div>
+        <h1>We Build<br><em>Intelligent Systems</em><br>That Ship.</h1>
+        <p class="hero-sub">
+            ViewFin is an AI solutions firm with a decade of building mission-critical technology. 
+            Originally founded in Shanghai and now headquartered in Toronto with a presence in Singapore, 
+            we turn complex ideas into production systems — fast.
+        </p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Start a Conversation →</a>
+            <a href="#services" class="btn-secondary">What We Build</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Years in Production</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">DKNG</div>
+                <div class="stat-label">NASDAQ Exit (Subsidiary)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Global Offices</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">EN/中</div>
+                <div class="stat-label">Bilingual Team</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+        <div class="section-label animate-on-scroll">What We Do</div>
+        <h2 class="section-title animate-on-scroll">Five practices.<br>One mission: <em>ship it.</em></h2>
+        <p class="section-desc animate-on-scroll">
+            We don't build slide decks. We build systems that run in production — 
+            deployed, monitored, and generating value from day one.
+        </p>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">🤖</div>
+                <h3>AI Application Development</h3>
+                <p>Custom AI agents, automated workflows, and intelligent business tools built on leading foundation models including Claude by Anthropic. From prototype to production in weeks, not months.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">📊</div>
+                <h3>Algorithmic Trading Systems</h3>
+                <p>Automated trading infrastructure for digital asset markets. Multi-strategy, multi-exchange architectures with real-time monitoring, risk management, and mobile control interfaces.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">🏢</div>
+                <h3>Enterprise AI Consulting</h3>
+                <p>Strategy workshops, architecture reviews, and hands-on implementation. We help teams adopt AI without the hype — just working systems that solve real problems.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">📡</div>
+                <h3>Creator Economy & Media Tech</h3>
+                <p>AI-powered content curation networks, multi-channel distribution, and creator monetization platforms. Real-time KOL monitoring to automated bilingual content generation.</p>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon">⛓️</div>
+                <h3>Blockchain & Web3</h3>
+                <p>Smart contracts, tokenization, and decentralized applications. Built on a decade of experience creating one of the first public blockchains. Protocol design, audit, and deployment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDGE -->
+    <section class="section" id="edge">
+        <div class="section-label animate-on-scroll">Our Edge</div>
+        <h2 class="section-title animate-on-scroll">Why teams choose ViewFin</h2>
+        <p class="section-desc animate-on-scroll">
+            Three things separate us from every other consulting firm with "AI" on their website.
+        </p>
+        <div class="edge-grid">
+            <div class="edge-card animate-on-scroll">
+                <h3>We <em>ship</em>, not slide-deck.</h3>
+                <p>Every solution we build runs in production. Our team has deployed live trading bots, AI content pipelines, business management systems, and protocol platforms — all shipping real value today.</p>
+            </div>
+            <div class="edge-card animate-on-scroll">
+                <h3>Bilingual. Bicultural. <em>Global.</em></h3>
+                <p>Toronto headquarters. Singapore presence. English and Chinese teams. We bridge Western AI innovation with Asian market opportunities — no translation layer required.</p>
+            </div>
+            <div class="edge-card animate-on-scroll">
+                <h3>A decade of <em>distributed systems.</em></h3>
+                <p>Before AI agents, we built blockchain protocols. The same engineering rigor — reliability, security, auditability — now powers our AI practice. We know what production means.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED EXIT -->
+    <section class="section">
+        <div class="section-label animate-on-scroll">Track Record</div>
+        <h2 class="section-title animate-on-scroll">We don't just build.<br>We build things that <em>get acquired.</em></h2>
+        <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 14px; padding: 48px; margin-top: 40px; display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: center;" class="animate-on-scroll">
+            <div style="text-align: center;">
+                <div style="font-family: var(--serif); font-size: 56px; color: var(--accent); line-height: 1;">DKNG</div>
+                <div style="font-size: 12px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 8px;">NASDAQ Listed</div>
+            </div>
+            <div>
+                <div style="font-size: 12px; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 500; margin-bottom: 12px;">Featured Exit — September 2021</div>
+                <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 12px; line-height: 1.4;">Scarcity Labs acquired by DraftKings Inc.</h3>
+                <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;">
+                    ViewFin spun off Scarcity Labs in 2021 with a team of young talent who built Ephimera — 
+                    a lens-based digital art NFT marketplace. Within months, Scarcity Labs was acquired by 
+                    DraftKings (NASDAQ: DKNG) to power the DraftKings Marketplace, their NFT ecosystem 
+                    for mainstream digital collectibles.
+                </p>
+                <a href="https://oziellaw.ca/canadian-based-scarcity-labs-acquired-by-draftkings/" target="_blank" 
+                   style="font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 500;">
+                    Read the announcement →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section class="section" id="founder">
+        <div class="section-label animate-on-scroll">Leadership</div>
+        <div class="founder-section">
+            <div class="founder-text animate-on-scroll">
+                <div class="founder-name">Eric Gu</div>
+                <div class="founder-role">Founder & CEO</div>
+                <p>
+                    20+ years building enterprise technology across Canada, the United States, and Asia. 
+                    Founded ViewFin in Shanghai in 2014 and led the creation of one of the first public blockchains, 
+                    pioneering digital identity and oracle systems that are now standard across the industry.
+                    Relocated operations to Canada and Singapore in 2017.
+                </p>
+                <p>
+                    In 2021, spun off Scarcity Labs — acquired by DraftKings (NASDAQ: DKNG). 
+                    Now leading ViewFin's evolution into AI-first consulting — with hands-on expertise 
+                    in Claude by Anthropic, production AI deployments, algorithmic trading systems, and 
+                    the architecture patterns that make AI work at scale. Based in Toronto, Canada.
+                </p>
+            </div>
+            <div class="founder-visual animate-on-scroll">
+                <div class="founder-credential">
+                    <div class="cred-year">2014</div>
+                    <div class="cred-text"><strong>Founded ViewFin</strong> — Shanghai, China. Built blockchain consultancy and began developing one of the first public blockchains.</div>
+                </div>
+                <div class="founder-credential">
+                    <div class="cred-year">2016</div>
+                    <div class="cred-text"><strong>Launched Metaverse Blockchain</strong> — One of the first public blockchains. Pioneered on-chain digital identities and oracle systems.</div>
+                </div>
+                <div class="founder-credential">
+                    <div class="cred-year">2017</div>
+                    <div class="cred-text"><strong>Relocated to Canada & Singapore</strong> — Following mainland China's regulatory ban on crypto/Web3, ViewFin moved operations to Toronto and Singapore. Ceased all mainland China operations.</div>
+                </div>
+                <div class="founder-credential">
+                    <div class="cred-year">2021</div>
+                    <div class="cred-text"><strong>Scarcity Labs → Acquired by DraftKings (NASDAQ: DKNG)</strong> — Spun off subsidiary Scarcity Labs with a team of young talent. Built Ephimera, a digital art NFT marketplace. Acquired by DraftKings to power the DraftKings Marketplace.</div>
+                </div>
+                <div class="founder-credential">
+                    <div class="cred-year">2025</div>
+                    <div class="cred-text"><strong>AI Pivot</strong> — Led ViewFin's transformation into an AI solutions firm. Production deployments on Claude by Anthropic, automated trading systems, and AI media platforms.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="contact-section">
+            <div class="section-label animate-on-scroll">Contact</div>
+            <h2 class="animate-on-scroll">Let's build<br><em>something real.</em></h2>
+            <p class="animate-on-scroll">
+                Whether you need an AI agent deployed this month, a trading system that runs 24/7, 
+                or a strategy for bringing AI into your organization — we're ready.
+            </p>
+            <a href="/cdn-cgi/l/email-protection#5a33343c351a2c333f2d3c333474393537" class="btn-primary animate-on-scroll"><span class="__cf_email__" data-cfemail="f891969e97b88e919d8f9e9196d69b9795">[email&#160;protected]</span> →</a>
+            <div class="contact-details animate-on-scroll">
+                <div class="contact-item">
+                    <a href="https://ca.linkedin.com/company/viewfin" target="_blank">LinkedIn ↗</a>
+                </div>
+                <div class="contact-item">Toronto, Ontario, Canada</div>
+                <div class="contact-item">Singapore</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-copy">© 2014–2026 ViewFin Ltd. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="https://ca.linkedin.com/company/viewfin" target="_blank">LinkedIn</a>
+            <a href="/cdn-cgi/l/email-protection#cba2a5ada48bbda2aebcada2a5e5a8a4a6">Contact</a>
+        </div>
+    </footer>
+
+    <!-- SCROLL ANIMATION -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+       
