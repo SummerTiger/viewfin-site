@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -595,7 +596,7 @@
                 Whether you need an AI agent deployed this month, a trading system that runs 24/7, 
                 or a strategy for bringing AI into your organization — we're ready.
             </p>
-            <a href="/cdn-cgi/l/email-protection#5a33343c351a2c333f2d3c333474393537" class="btn-primary animate-on-scroll"><span class="__cf_email__" data-cfemail="f891969e97b88e919d8f9e9196d69b9795">[email&#160;protected]</span> →</a>
+            <a href="#" id="contact-btn" class="btn-primary animate-on-scroll">Get in Touch →</a>
             <div class="contact-details animate-on-scroll">
                 <div class="contact-item">
                     <a href="https://ca.linkedin.com/company/viewfin" target="_blank">LinkedIn ↗</a>
@@ -611,11 +612,20 @@
         <div class="footer-copy">© 2014–2026 ViewFin Ltd. All rights reserved.</div>
         <div class="footer-links">
             <a href="https://ca.linkedin.com/company/viewfin" target="_blank">LinkedIn</a>
-            <a href="mailto:info@viewfin.com">Contact</a>
+            <a href="#" id="footer-contact">Contact</a>
         </div>
     </footer>
 
-    <!-- No JavaScript required — CSS-only animations -->
+    <!-- Email links built at runtime to bypass Cloudflare email protection -->
+    <script>
+        (function() {
+            var u = 'info', d = 'viewfin.com', m = u + String.fromCharCode(64) + d;
+            var btn = document.getElementById('contact-btn');
+            if (btn) { btn.href = 'mai' + 'lto:' + m; btn.textContent = m + ' \u2192'; }
+            var fc = document.getElementById('footer-contact');
+            if (fc) { fc.href = 'mai' + 'lto:' + m; }
+        })();
+    </script>
 
 </body>
 </html>
