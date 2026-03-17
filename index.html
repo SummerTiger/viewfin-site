@@ -12,10 +12,10 @@
             --bg: #0A0A0C;
             --bg-surface: #111114;
             --bg-elevated: #18181C;
-            --border: #242429;
+            --border: #2E2E34;
             --text-primary: #F0EDE6;
-            --text-secondary: #9A9A9E;
-            --text-muted: #5A5A5E;
+            --text-secondary: #B8B8BC;
+            --text-muted: #7A7A80;
             --accent: #D4A853;
             --accent-dim: rgba(212, 168, 83, 0.12);
             --serif: 'Instrument Serif', Georgia, serif;
@@ -379,13 +379,18 @@
         }
 
         .animate-on-scroll {
-            opacity: 0; transform: translateY(24px);
-            transition: all 0.7s ease;
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.7s ease forwards;
         }
 
-        .animate-on-scroll.visible {
-            opacity: 1; transform: translateY(0);
-        }
+        /* Stagger animations for visual effect */
+        .animate-on-scroll:nth-child(1) { animation-delay: 0.1s; }
+        .animate-on-scroll:nth-child(2) { animation-delay: 0.2s; }
+        .animate-on-scroll:nth-child(3) { animation-delay: 0.3s; }
+        .animate-on-scroll:nth-child(4) { animation-delay: 0.4s; }
+        .animate-on-scroll:nth-child(5) { animation-delay: 0.5s; }
+        .animate-on-scroll:nth-child(6) { animation-delay: 0.6s; }
 
         /* ==================== RESPONSIVE ==================== */
         @media (max-width: 768px) {
@@ -606,13 +611,11 @@
         <div class="footer-copy">© 2014–2026 ViewFin Ltd. All rights reserved.</div>
         <div class="footer-links">
             <a href="https://ca.linkedin.com/company/viewfin" target="_blank">LinkedIn</a>
-            <a href="/cdn-cgi/l/email-protection#cba2a5ada48bbda2aebcada2a5e5a8a4a6">Contact</a>
+            <a href="mailto:info@viewfin.com">Contact</a>
         </div>
     </footer>
 
-    <!-- SCROLL ANIMATION -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-       
+    <!-- No JavaScript required — CSS-only animations -->
+
+</body>
+</html>
